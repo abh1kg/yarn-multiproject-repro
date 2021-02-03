@@ -1,0 +1,9 @@
+{
+  "name": "tool1",
+  "dependencies": {
+    "lodash": ">=4.17.15"
+  },
+  "scripts": {
+    "print": "echo tool1"
+  }
+}

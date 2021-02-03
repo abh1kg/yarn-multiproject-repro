@@ -1,0 +1,10 @@
+{
+    "name": "nm",
+    "workspaces": [
+        "tool1",
+        "tool2"
+    ],
+    "scripts": {
+        "print-all": "yarn workspaces foreach -Av run print"
+    }
+}

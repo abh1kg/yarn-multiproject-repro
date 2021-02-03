@@ -1,0 +1,6 @@
+{
+  "name": "pkg1",
+  "dependencies": {
+    "lodash": "4.17.19"
+  }
+}
