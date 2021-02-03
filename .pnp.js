@@ -23,8 +23,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:."
       },
       {
-        "name": "pkg1-ae8be5",
+        "name": "pkg1",
         "reference": "workspace:work1/pkg1"
+      },
+      {
+        "name": "pkg2",
+        "reference": "workspace:work1/pkg2"
+      },
+      {
+        "name": "pkg3",
+        "reference": "workspace:work2/pkg1"
       }
     ],
     "enableTopLevelFallback": true,
@@ -33,8 +41,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     ],
     "fallbackPool": [
       [
-        "pkg1-ae8be5",
+        "lodash",
+        "npm:4.17.19"
+      ],
+      [
+        "pkg1",
         "workspace:work1/pkg1"
+      ],
+      [
+        "pkg2",
+        "workspace:work1/pkg2"
+      ],
+      [
+        "pkg3",
+        "workspace:work2/pkg1"
       ]
     ],
     "locationBlacklistData": [
@@ -48,6 +68,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
+      ["lodash", [
+        ["npm:4.17.19", {
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.19-fa87a8e838-ff2b7a95f0.zip/node_modules/lodash/",
+          "packageDependencies": [
+            ["lodash", "npm:4.17.19"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["monorepo", [
         ["workspace:.", {
           "packageLocation": "./",
@@ -57,11 +86,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
-      ["pkg1-ae8be5", [
+      ["pkg1", [
         ["workspace:work1/pkg1", {
           "packageLocation": "./work1/pkg1/",
           "packageDependencies": [
-            ["pkg1-ae8be5", "workspace:work1/pkg1"]
+            ["pkg1", "workspace:work1/pkg1"],
+            ["lodash", "npm:4.17.19"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["pkg2", [
+        ["workspace:work1/pkg2", {
+          "packageLocation": "./work1/pkg2/",
+          "packageDependencies": [
+            ["pkg2", "workspace:work1/pkg2"],
+            ["lodash", "npm:4.17.19"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
+      ["pkg3", [
+        ["workspace:work2/pkg1", {
+          "packageLocation": "./work2/pkg1/",
+          "packageDependencies": [
+            ["pkg3", "workspace:work2/pkg1"],
+            ["lodash", "npm:4.17.19"]
           ],
           "linkType": "SOFT",
         }]
@@ -5416,7 +5466,6 @@ function makeApi(runtimeState, opts) {
     if (subPath === null) return false;
 
     if (ignorePattern.test(subPath.replace(/\/$/, ``))) {
-      console.log('ignored path' + path);
       return true;
     } else {
       return false;
